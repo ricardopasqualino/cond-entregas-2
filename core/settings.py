@@ -16,7 +16,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['localhost', 'https://git.heroku.com/delivery5150.git']
+ALLOWED_HOSTS = ['localhost', 'https://delivery1038.herokuapp.com/']
 
 # Application definition
 

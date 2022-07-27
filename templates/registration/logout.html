@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 
 {% block main %}
-    <div class="container">
-        <h1>Você encerrou o seu acesso!</h1>
-        <a href="{% url 'Home' %}">Acessar Novamente</a>
+    <div class="container mt-5">
+        <h1 class="mt-3">Você encerrou o seu acesso!</h1>
+        <a class="btn btn-outline-primary btn-sm"  href="{% url 'Register' %}">Acessar Novamente</a>
     </div>
 {% endblock %}

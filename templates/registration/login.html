@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
 
 {% block main %}
-<br>
-<div class="container">
+<div class="container mt-5">
     <div class="row">
-        <div class="w-100">
+        <div class="col">
     
         <!-- Mensagem de erro do form -->    
         {% if form.errors %}
@@ -15,32 +14,34 @@
         <h1>Insira o nome e a senha.</h1>
         <p>Sempre acesse com a sua conta e nunca compartilhe a senha com o colega de trabalho.</p>
 
+        </div>
     </div>
 
     <!-- estrutura do formulário -->
-    <div class="container">
-        <div class="row">
+    <div class="row">
+        <div class="col">
             <form class="form-group" method="post" action="{% url 'Login' %}">
             
             {% csrf_token %}
 
-            <div class="col-sm-">
+            <div class="col-3">
                 <!-- Inclusão da item de usuário -->
                 <div class="form-group">
                     <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Coloque seu nome" {{ form.username }}
                 </div>
         
                 <!-- Inclusão do campo senha -->
-                <div class="form-group">
+                <div class="form-group mt-2">
                     <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Coloque sua senha" {{ form.password }}
                 </div>
             </div>
-            <input class="btn btn-primary" type="submit" value="Clique para entrar">
+            <input class="btn btn-primary mt-3 p-2" type="submit" value="Acessar">
+        </div>
+        <div class="text-muted mt-3">
+            <a>> Esqueci minha senha</a>
         </div>
     </div>
-
     </form>
-<br>
-</div>
+    </div>
 </div>
 {% endblock %}

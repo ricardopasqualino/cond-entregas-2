@@ -1,20 +1,17 @@
 {% extends 'base.html' %}
 
 {% block main %}
-<div class="container">
-  <br>
-  <h1>Confira a lista de entregas</h1>
-  <br> 
-    <table class="table">
+  <h1 class="mt-5 m-3">Lista de entregas registradas</h1>
+    <table class="table m-3">
         <thead>
           <tr>
-            <th scope="col">Nº da OE</th>
-            <th scope="col">Última Atualização</th>
+            <th scope="col">OE</th>
+            <th scope="col">Atualização</th>
             <th scope="col">Nota Fiscal</th>
             <th scope="col">Morador</th>
             <th scope="col">Prateleira</th>
-            <th scope="col">Responsável pela OE</th>
-            <th scope="col">Foi retirada?</th>
+            <th scope="col">Responsável</th>
+            <th scope="col">Retirada?</th>
           </tr>
         </thead>
         <tbody>
@@ -38,6 +35,5 @@
         </tbody>
       </table>
     </div>
-</div>
 
 {% endblock %}

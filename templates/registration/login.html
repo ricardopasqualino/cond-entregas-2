@@ -24,7 +24,7 @@
             
             {% csrf_token %}
 
-            <div class="col-3">
+            <div class="col">
                 <!-- Inclusão da item de usuário -->
                 <div class="form-group">
                     <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Coloque seu nome" {{ form.username }}
@@ -36,9 +36,6 @@
                 </div>
             </div>
             <input class="btn btn-primary mt-3 p-2" type="submit" value="Acessar">
-        </div>
-        <div class="text-muted mt-3">
-            <a>> Esqueci minha senha</a>
         </div>
     </div>
     </form>

@@ -25,9 +25,9 @@
             <td>{{ entregas.recebido_por }}</td>
             <td>
               {% if entregas.status == False %}
-                <a class="btn btn-outline-danger" href="{% url 'Atualizar_entrega' entregas.id %}" {{ entregas.status }}>Não</a>
+                <a class="btn btn-danger" href="{% url 'Atualizar_entrega' entregas.id %}" {{ entregas.status }}>Não</a>
               {% else %}
-                <a class="btn btn-outline-success" href="{% url 'Atualizar_entrega' entregas.id %}" {{ entregas.status }}>Sim</a>
+                <a class="btn btn-success" href="{% url 'Atualizar_entrega' entregas.id %}" {{ entregas.status }}>Sim</a>
               {% endif %}
               </td>
           </tr>

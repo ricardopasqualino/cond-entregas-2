@@ -9,7 +9,7 @@
             {% csrf_token %}
             <li class="list-group-item form-check form-switch ms-5">
                 <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" action="{{ form.status }}
-                <label class="form-check-label" for="flexSwitchCheckDefault">Cliente retirou a compra?</label>
+                <label class="form-check-label" for="flexSwitchCheckDefault">Morador retirou a entrega?</label>
             </li>
             <button class='btn btn-outline-primary mt-2' type='submit'>Atualizar</button>
         </div>
@@ -19,7 +19,7 @@
         <div class="col">
             <ul class="list-group">
                 <p>Informações da ordem de entrega</p>
-                <li class="list-group-item text-muted">Última Atualização: <span>{{ entrega.data_entrada }}</span></li>
+                <li class="list-group-item text-muted">Última Atualização: {{ entrega.data_entrada }}</li>
                 <li class="list-group-item text-muted">Recebido por: {{ form.recebido_por }}</li>
                 <li class="list-group-item text-muted">Ordem de entrega: OE/{{ entrega.id }}</li>
                 <li class="list-group-item text-muted">Nota Fiscal ou Identificador: {{ form.nota_fiscal }}</li>

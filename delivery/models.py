@@ -43,9 +43,9 @@ class Box(models.Model):
 class Delivery(models.Model):
     nota_fiscal = models.CharField(max_length=10, default=None, null=False)
     casa = models.ForeignKey(Casa, on_delete=models.CASCADE, default=Casa, auto_created=True)
-    data_entrada = models.DateTimeField(null=False, blank=False, auto_now=True)
+    data_entrada = models.DateTimeField(null=False, blank=False, auto_now=True, unique_for_date=True)
     modulo = models.ForeignKey(Box, on_delete=models.CASCADE, default=Box, auto_created=True)
-    recebido_por = models.ForeignKey(User, on_delete=models.CASCADE, default=User, auto_created=True)
+    recebido_por = models.ForeignKey(User, on_delete=models.CASCADE, default=User)
     status = models.BooleanField(null=False, default=False)
 
 

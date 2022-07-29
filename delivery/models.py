@@ -45,7 +45,7 @@ class Delivery(models.Model):
     casa = models.ForeignKey(Casa, on_delete=models.CASCADE, default=Casa, auto_created=True)
     data_entrada = models.DateTimeField(null=False, blank=False, auto_now=True, unique_for_date=True)
     modulo = models.ForeignKey(Box, on_delete=models.CASCADE, default=Box, auto_created=True)
-    recebido_por = models.ForeignKey(User, on_delete=models.CASCADE, default=User)
+    recebido_por = models.ForeignKey(User, on_delete=models.CASCADE, default=User) # Esta deletendo as entregas quando deleta o user
     status = models.BooleanField(null=False, default=False)
 
 

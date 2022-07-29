@@ -1,40 +1,37 @@
 {% extends 'base.html' %}
 
 {% block main %} 
-<div class="container mt-5">
   <h1>Chegou uma nova entrega? Cadastre!</h1>
   <p>Preencha os campos abaixo para cadastrar uma nova entrega.</p>
-  <div class="row">
-    <div class="col">
+  <div class="row justify-content-center">
+    <div class="col-4">
         <form action="{% url 'Entrega_nova' %}" method="post">
         {% csrf_token %}
 
         <!-- Número da Nota Fiscal -->
-        <div class="form-group mt-2">
+        <div class="form-group mt-3">
           <label for="exampleFormControlInput1">Nota Fiscal / Identificador</label>
-          <input  type="text" class="form-control" id="exampleFormControlInput1" placeholder="Número o número" {{ form.nota_fiscal }}
+          <input  type="text" class="form-control" id="exampleFormControlInput1" placeholder="Número da NF" {{ form.nota_fiscal }}
         </div>
 
         <!-- Número da Casa -->
-        <div class="form-group mt-2">
+        <div class="form-group mt-3">
           <label for="exampleFormControlInput1">Casa / Apartamento</label>
           <select  type="text" class="form-control" id="exampleFormControlInput1" {{ form.casa }}
         </div>
 
         <!-- Prateleira -->
-        <div class="form-group mt-2">
+        <div class="form-group mt-3">
           <label for="exampleFormControlInput1">Local armazenado</label>
           <select  type="text" class="form-control" id="exampleFormControlInput1" {{ form.modulo }}
         </div>
 
         <!-- Funcionario -->
-        <div class="form-group mt-2">
+        <div class="form-group mt-3">
           <label for="exampleFormControlInput1">Recebido por</label>
           <select type="block" class="form-control" id="exampleFormControlInput1" {{ form.recebido_por }}
         </div>
-        
         <input class="btn btn-primary mt-3" type="submit" value="Incluir entrega">
-      </div>
     </form>
   </div>
 </div>

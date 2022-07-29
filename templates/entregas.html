@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 
 {% block main %}
-  <h1 class="mt-5 m-3">Lista de entregas registradas</h1>
-    <table class="table m-3">
+<div class="row mt-5 justify-content-center">
+  <h1>Lista de entregas registradas</h1>
+  <div class="col">
+    <table class="table mt-3">
         <thead>
           <tr>
             <th scope="col">OE</th>
@@ -25,15 +27,17 @@
             <td>{{ entregas.recebido_por }}</td>
             <td>
               {% if entregas.status == False %}
-                <a class="btn btn-danger" href="{% url 'Atualizar_entrega' entregas.id %}" {{ entregas.status }}>Não</a>
+                <a class="btn btn-danger btn-sm" href="{% url 'Atualizar_entrega' entregas.id %}" {{ entregas.status }}>Não</a>
               {% else %}
-                <a class="btn btn-success" href="{% url 'Atualizar_entrega' entregas.id %}" {{ entregas.status }}>Sim</a>
+                <a class="btn btn-light btn-sm disabled" href="{% url 'Atualizar_entrega' entregas.id %}" {{ entregas.status }}>Sim</a>
               {% endif %}
               </td>
           </tr>
           {% endfor %}
         </tbody>
       </table>
+      </div>
+      </div>
     </div>
 
 {% endblock %}

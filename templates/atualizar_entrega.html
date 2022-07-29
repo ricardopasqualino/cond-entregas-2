@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
 
 {% block main %}
-<div class='container mt-5'>
-    <h1>Atualize o recebimento da entrega OS/{{ entrega.id }}</h1>
-    <div class="row mt-3">
-        <div class="col">
+    <h1>Atualize o recebimento da entrega OE/{{ entrega.id }}</h1>
+    <div class="row mt-3 justify-content-center">
+        <div class="col-3">
             <form class='form' action="{% url 'Atualizar_entrega' entrega.id %}" method="POST">
             {% csrf_token %}
             <li class="list-group-item form-check form-switch ms-5">
@@ -15,8 +14,8 @@
         </div>
     </div>
     
-    <div class="row mt-5">
-        <div class="col">
+    <div class="row mt-5 justify-content-center">
+        <div class="col-6">
             <ul class="list-group">
                 <p>Informações da ordem de entrega</p>
                 <li class="list-group-item text-muted">Última Atualização: {{ entrega.data_entrada }}</li>
@@ -29,5 +28,4 @@
         </div>
     </div>
     </form>
-</div>
 {% endblock %}

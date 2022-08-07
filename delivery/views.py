@@ -1,4 +1,7 @@
+from itertools import count
+from logging import log
 from random import random
+from urllib import request
 from django.shortcuts import render, redirect
 from core.form import NovaForm, DeliveryForm
 from .models import Delivery
@@ -93,5 +96,7 @@ def Erro(request):
     return render(request, 'erro.html')
 
 
-def random_id():
-    return str (random.randint(10000, 99999))
+def Painel(request):
+    # x  = Delivery.objects.all()
+    # qtd_entregas = x.count()
+    return render(request, 'painel.html')

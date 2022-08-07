@@ -29,7 +29,7 @@
               {% if entregas.status == False %}
                 <a class="btn btn-danger btn-sm" href="{% url 'Atualizar_entrega' entregas.id %}" {{ entregas.status }}>Não</a>
               {% else %}
-                <a class="btn btn-light btn-sm disabled" href="{% url 'Atualizar_entrega' entregas.id %}" {{ entregas.status }}>Sim</a>
+                <span class="btn btn-light btn-sm disabled">Sim</span>
               {% endif %}
               </td>
           </tr>

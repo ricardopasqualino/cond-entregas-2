@@ -6,7 +6,6 @@ from delivery.models import (
     Morador, 
     Casa, 
     Box,
-    Prestador,
     )
 
 
@@ -26,4 +25,3 @@ admin.site.register(Delivery, DeliveryAdmin)
 admin.site.register(Morador, MoradorAdmin)
 admin.site.register(Casa, CasaAdmin)
 admin.site.register(Box)
-admin.site.register(Prestador)

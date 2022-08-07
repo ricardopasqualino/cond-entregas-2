@@ -5,32 +5,26 @@ from django.db.migrations.writer import MigrationWriter
 from django.utils.deconstruct import deconstructible
 
 
-class Casa(models.Model):
-    numero = models.CharField(max_length=3, default=None, null=True)
-    rua = models.CharField(max_length=200, default=None, null=True)
-
-
-    def __str__(self):
-        return self.numero
-
-
 class Morador(models.Model):
     nome = models.CharField(max_length=200, default=None, null=True)
     sobrenome = models.CharField(max_length=200, default=None, null=True)
     telefone = models.CharField(max_length=40, default=None, null=True)
     email = models.CharField(max_length=200, default=None, null=True)
-    casa = models.ForeignKey(Casa, on_delete=models.CASCADE, default=None, null=True)
 
 
     def __str__(self):
         return self.nome
 
 
-class Prestador(models.Model):
-    nome = models.CharField(max_length=10, default=None, null=True)
+class Casa(models.Model):
+    numero = models.CharField(max_length=3, default=None, null=True)
+    rua = models.CharField(max_length=200, default=None, null=True)
+    moradores = models.ForeignKey(Morador, on_delete=models.SET_NULL, null=True)
+    # quando um morador é deletado, a casa fica sem morador.
+
 
     def __str__(self):
-        return self.nome
+        return self.numero
 
 
 class Box(models.Model):
@@ -44,8 +38,9 @@ class Delivery(models.Model):
     nota_fiscal = models.CharField(max_length=10, default=None, null=False)
     casa = models.ForeignKey(Casa, on_delete=models.CASCADE, default=Casa, auto_created=True)
     data_entrada = models.DateTimeField(null=False, blank=False, auto_now=True, unique_for_date=True)
-    modulo = models.ForeignKey(Box, on_delete=models.CASCADE, default=Box, auto_created=True)
-    recebido_por = models.ForeignKey(User, on_delete=models.CASCADE, default=User) # Esta deletendo as entregas quando deleta o user
+    modulo = models.ForeignKey(Box, on_delete=models.SET_NULL, default=Box, null=True)
+    recebido_por = models.ForeignKey(User, on_delete=models.SET_NULL, default=User, null=True) 
+    # quando a entrega é delada, precisamos manter o prestador no histórico.
     status = models.BooleanField(null=False, default=False)
 
 

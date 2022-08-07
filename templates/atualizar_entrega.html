@@ -18,12 +18,12 @@
         <div class="col-6">
             <ul class="list-group">
                 <p>Informações da ordem de entrega</p>
-                <li class="list-group-item text-muted">Última Atualização: {{ entrega.data_entrada }}</li>
-                <li class="list-group-item text-muted">Recebido por: {{ form.recebido_por }}</li>
-                <li class="list-group-item text-muted">Ordem de entrega: OE/{{ entrega.id }}</li>
-                <li class="list-group-item text-muted">Nota Fiscal ou Identificador: {{ form.nota_fiscal }}</li>
-                <li class="list-group-item text-muted">Apartamento/Casa: {{ form.casa }}</li>
-                <li class="list-group-item text-muted">Local de armazenagem: {{ form.modulo }}</li>
+                <li class="list-group-item">Ordem de entrega: OE/{{ entrega.id }}</li>
+                <li class="list-group-item">Última Atualização: {{ entrega.data_entrada }}</li>
+                <li class="list-group-item disabled">Nota Fiscal ou Identificador: {{ form.nota_fiscal }}</li>
+                <li class="list-group-item dropdown-item disabled">Casa ou Apartamento: {{ form.casa }}</li>
+                <li class="list-group-item disabled">Local de armazenagem: {{ form.modulo }}</li>
+                <li class="list-group-item disabled">Recebido por: {{ form.recebido_por }}</li>
             </ul>
         </div>
     </div>

@@ -13,7 +13,8 @@ from delivery.views import (
     Password_reset, 
     Register, 
     Atualizar_entrega,
-    Erro,   
+    Erro,
+    Painel,   
 )
 
 urlpatterns = [
@@ -37,6 +38,9 @@ urlpatterns = [
     path('reset-senha/', Password_reset , name='Password_reset'),
     path('cadastro/', Register , name='Register'),
     
+    #Painel
+    path('painel/', Painel , name='Painel'),
+
     #Email
     path('email/', include('enviaemail.urls')),
 ]

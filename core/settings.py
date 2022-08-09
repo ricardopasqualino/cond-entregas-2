@@ -10,15 +10,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = True
+
 
 ALLOWED_HOSTS = ['localhost', 'delivery1038.herokuapp.com','127.0.0.1']
 
-# Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -99,11 +98,16 @@ LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'America/Sao_Paulo'
 
-USE_I18N = True # Alterado para False para o Django ler a orientação de data customizada.
-
-DATE_FORMAT = 'd M, y' # Formata o campo de data.
-
 USE_TZ = True
+
+USE_L10N = False
+
+USE_I18N = True
+
+DATE_INPUT_FORMATS = ['%d/%m/%Y']
+
+DATE_FORMAT = ['%d/%m/%Y']
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/

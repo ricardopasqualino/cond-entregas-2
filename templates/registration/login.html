@@ -2,7 +2,7 @@
 
 {% block main %}
     <div class="row justify-content-center">
-        <div class="col-12">
+        <div class="col">
 
             <!-- Mensagem de erro do form -->    
             {% if form.errors %}
@@ -17,7 +17,6 @@
         </div>
 
         <!-- estrutura do formulário -->
-        <div class="col-3">
             <form class="form-group ustify-content-center" method="post" action="{% url 'Login' %}">
     
             {% csrf_token %}
@@ -33,7 +32,6 @@
                 </div>
                 <input class="btn btn-primary mt-3 p-2" type="submit" value="Acessar">
             </div>
-        </div>
     </form>
 </div>
 {% endblock %}

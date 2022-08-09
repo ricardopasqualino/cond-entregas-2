@@ -19,7 +19,7 @@ class Morador(models.Model):
 class Casa(models.Model):
     numero = models.CharField(max_length=3, default=None, null=True)
     rua = models.CharField(max_length=200, default=None, null=True)
-    moradores = models.ForeignKey(Morador, on_delete=models.SET_NULL, null=True)
+    moradores = models.ForeignKey(Morador, on_delete=models.SET_NULL, null=True, default=None, blank=True)
     # quando um morador é deletado, a casa fica sem morador.
 
 
@@ -40,7 +40,7 @@ class Delivery(models.Model):
     data_entrada = models.DateTimeField(null=False, blank=False, auto_now=True, unique_for_date=True)
     modulo = models.ForeignKey(Box, on_delete=models.SET_NULL, default=Box, null=True)
     recebido_por = models.ForeignKey(User, on_delete=models.SET_NULL, default=User, null=True) 
-    # quando a entrega é delada, precisamos manter o prestador no histórico.
+    # quando a entrega é removida, precisamos manter o prestador no histórico.
     status = models.BooleanField(null=False, default=False)
 
 

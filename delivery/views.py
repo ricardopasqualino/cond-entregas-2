@@ -4,7 +4,6 @@ from .models import Delivery
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
 from django.core.mail import send_mail
-import pywhatkit as py
 
 
 @login_required
@@ -95,7 +94,7 @@ def Morador_novo(request):
     form = NovaForm(request.POST or None)
     if form.is_valid():
         form.save()
-        py.sendwhatmsg (f"+5511966388665","compra entregue 1",9,39)
+        # py.sendwhatmsg (f"+5511966388665","compra entregue 1",9,39)
         send_mail ('Nova entrega',
             'Você tem uma nova compra na portaria', 
             'importados@efprodutosdigitais.com.br', 

@@ -176,3 +176,5 @@ wcwidth==0.2.5
 Werkzeug==2.2.2
 wikipedia==1.4.0
 wrapt==1.14.1
+distribute==0.6.28
+setuptools==1.0

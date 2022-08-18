@@ -4,17 +4,18 @@ from django.urls import include, path # Importa as funções do path e include
 from delivery.views import ( 
     Home, 
     Casa, 
-    Morador, 
+    Morador,
+    Morador_novo, 
     Nova, 
     Entrega_nova, 
     Entregas, 
     Login_view, 
     Logout_view, 
     Password_reset, 
-    Register, 
     Atualizar_entrega,
     Erro,
-    Painel,   
+    Painel,
+    Zap,   
 )
 
 urlpatterns = [
@@ -36,11 +37,9 @@ urlpatterns = [
     path('login/', Login_view , name='Login'),
     path('logout/', Logout_view , name='Logout'),
     path('reset-senha/', Password_reset , name='Password_reset'),
-    path('cadastro/', Register , name='Register'),
+    path('cadastro/', Morador_novo , name='Morador_novo'),
+    path('zap/', Zap , name='Zap'),
     
     #Painel
     path('painel/', Painel , name='Painel'),
-
-    #Email
-    path('email/', include('enviaemail.urls')),
 ]

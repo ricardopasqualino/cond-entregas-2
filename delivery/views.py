@@ -1,12 +1,10 @@
-from itertools import count
-from logging import log
-from random import random
-from urllib import request
 from django.shortcuts import render, redirect
 from core.form import NovaForm, DeliveryForm
 from .models import Delivery
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
+from django.core.mail import send_mail
+import pywhatkit as py
 
 
 @login_required
@@ -32,7 +30,7 @@ def Entrega_nova(request):
         form.save()
         return redirect('Entregas')
     else:
-        return redirect('Entregas')
+        return redirect('Erro')
 
 @login_required
 def Entregas(request):
@@ -89,14 +87,38 @@ def Password_reset(request):
 
 @login_required
 def Register(request):
-    return render(request, 'accounts/register.html')
+    return render(request, 'cadastrar-morador.html')
 
 
+@login_required
+def Morador_novo(request):
+    form = NovaForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        py.sendwhatmsg (f"+5511966388665","compra entregue 1",9,39)
+        send_mail ('Nova entrega',
+            'Você tem uma nova compra na portaria', 
+            'importados@efprodutosdigitais.com.br', 
+            ['kivam15052@offsala.com'],
+            fail_silently=False
+        )
+        return redirect('Entregas')
+    else:
+        return redirect('Erro')
+
+
+@login_required
 def Erro(request):
     return render(request, 'erro.html')
 
 
+@login_required
 def Painel(request):
     # x  = Delivery.objects.all()
     # qtd_entregas = x.count()
     return render(request, 'painel.html')
+
+
+def Zap(request):
+    py.sendwhatmsg (f"+5511966388665","mensagem 3",9,36)
+    return render(request, 'zap.html')

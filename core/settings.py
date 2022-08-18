@@ -29,7 +29,6 @@ INSTALLED_APPS = [
     'delivery',
     'django_celery_results',
     'django_celery_beat',
-    'enviaemail',
 ]
 
 MIDDLEWARE = [
@@ -131,19 +130,20 @@ LOGIN_REDIRECT_URL = "/"
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-# DEFAULT_FROM_EMAIL= config('EMAIL_HOST_USER')
-# EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-# EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-# EMAIL_USE_TLS = config('EMAIL_USE_TLS')
-# EMAIL_PORT = config('EMAIL_PORT')
-# EMAIL_HOST = config('EMAIL_HOST')
+EMAIL_HOST = 'smtp.hostinger.com'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = 'importados@efprodutosdigitais.com.br'
+DEFAULT_FROM_EMAIL= 'importados@efprodutosdigitais.com.br'
+EMAIL_HOST_PASSWORD = 'Pzq@515027'
+# EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = True
 
 
 #CELERY
-CELERY_RESULTS_BACKEND = 'django-db'
+# CELERY_RESULTS_BACKEND = 'django-db'
 
-CELERY_BROKER_URL = 'redis://localhost:6379'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379'
-CELERY_ACCEPT_CONTENT = ['application/json']
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TASK_SERIALIZER = 'json'
+# CELERY_BROKER_URL = 'redis://localhost:6379'
+# CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+# CELERY_ACCEPT_CONTENT = ['application/json']
+# CELERY_RESULT_SERIALIZER = 'json'
+# CELERY_TASK_SERIALIZER = 'json'

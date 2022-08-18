@@ -117,8 +117,3 @@ def Painel(request):
     # x  = Delivery.objects.all()
     # qtd_entregas = x.count()
     return render(request, 'painel.html')
-
-
-def Zap(request):
-    py.sendwhatmsg (f"+5511966388665","mensagem 3",9,36)
-    return render(request, 'zap.html')

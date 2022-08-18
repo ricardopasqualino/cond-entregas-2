@@ -15,7 +15,6 @@ from delivery.views import (
     Atualizar_entrega,
     Erro,
     Painel,
-    Zap,   
 )
 
 urlpatterns = [
@@ -38,7 +37,6 @@ urlpatterns = [
     path('logout/', Logout_view , name='Logout'),
     path('reset-senha/', Password_reset , name='Password_reset'),
     path('cadastro/', Morador_novo , name='Morador_novo'),
-    path('zap/', Zap , name='Zap'),
     
     #Painel
     path('painel/', Painel , name='Painel'),

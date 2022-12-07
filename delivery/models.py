@@ -1,8 +1,10 @@
+from curses import flash
+from email.policy import default
+from sys import maxsize
+from unicodedata import numeric
+from unittest.util import _MAX_LENGTH
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.migrations.serializer import BaseSerializer
-from django.db.migrations.writer import MigrationWriter
-from django.utils.deconstruct import deconstructible
 
 
 class Morador(models.Model):
@@ -10,6 +12,7 @@ class Morador(models.Model):
     sobrenome = models.CharField(max_length=200, default=None, null=True)
     telefone = models.CharField(max_length=40, default=None, null=True)
     email = models.CharField(max_length=200, default=None, null=True)
+    aceite_alertas = models.BooleanField(default=False) #Morador configurado para receber alertas
 
 
     def __str__(self):
@@ -20,7 +23,7 @@ class Casa(models.Model):
     numero = models.CharField(max_length=3, default=None, null=True)
     rua = models.CharField(max_length=200, default=None, null=True)
     moradores = models.ForeignKey(Morador, on_delete=models.SET_NULL, null=True, default=None, blank=True)
-    # quando um morador é deletado, a casa fica sem morador.
+    # pessoa = models.ManyToManyField(Morador, default=None)
 
 
     def __str__(self):
@@ -35,12 +38,11 @@ class Box(models.Model):
 
 
 class Delivery(models.Model):
-    nota_fiscal = models.CharField(max_length=10, default=None, null=False)
-    casa = models.ForeignKey(Casa, on_delete=models.CASCADE, default=Casa, auto_created=True)
+    nota_fiscal = models.CharField(max_length=6, default=None, null=False, blank=False)
+    casa = models.ForeignKey(Casa, on_delete=models.DO_NOTHING, default=Casa, auto_created=True)
     data_entrada = models.DateTimeField(null=False, blank=False, auto_now=True, unique_for_date=True)
     modulo = models.ForeignKey(Box, on_delete=models.SET_NULL, default=Box, null=True)
     recebido_por = models.ForeignKey(User, on_delete=models.SET_NULL, default=User, null=True) 
-    # quando a entrega é removida, precisamos manter o prestador no histórico.
     status = models.BooleanField(null=False, default=False)
 
 

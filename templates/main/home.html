@@ -1,0 +1,40 @@
+{% extends 'main/base-main.html' %}
+{% load static %}
+
+{% block main %} 
+    <div class="container mt-5">
+        <h3>Ei <b>{{ user.first_name }}</b>, escolha um produto abaixo:</h3>
+          <div class="row mt-3">
+            <div class="col mt-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                      <h5 class="card-title">Gestão de entregas na portaria</h5>
+                      <p class="card-text">Notifique os moradores automaticamente a chegada de uma nova entrega</p>
+                      <a href="{% url 'delivery_home' %}" class="btn btn-primary">acessar</a>
+                    </div>
+                  </div>
+            </div>
+
+            <div class="col mt-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                      <h5 class="card-title">Gestão de eventos</h5>
+                      <p class="card-text">Evite filas! Crie eventos e pré aprove convidados na portaria forma digital!</p>
+                      <a href="{% url 'guests_home' %}" class="btn btn-primary">acessar</a>
+                    </div>
+                  </div>
+            </div>
+
+            <!--<div class="row mt-3">
+                <div class="card text-center">
+                    <div class="card-body">
+                      <h5 class="card-title">Gestão de Estacionamento</h5>
+                      <p class="card-text">Evite filas! Crie eventos e pré aprove convidados na portaria forma digital!</p>
+                      <a href="{% url 'parking_home' %}" class="btn btn-primary">acessar</a>
+                    </div>
+                  </div>
+            </div>-->
+        </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'guests/base-guests.html' %}
+{% load static %}
+
+{% block main %}
+    <div class="row mt-5">
+      <div class="col-8">
+        <h1>Libere os convidados para a portaria!</h1>
+        <p>Sabendo que a visita vem, o morador já cria uma lista de convidados</p>
+      </div>
+        <div class="col">
+          <a class="btn btn-outline-primary float-right" href="#">Link</a>
+          <a class="btn btn-primary float-right mr-2" href="{% url 'guests_criar_convidado'%}">Criar Convidado</a>
+        </div>
+    </div>
+
+    <table class="table mt-3">
+        <thead>
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">RG/CPF</th>
+            <th scope="col">Veículo</th>
+            <th scope="col">Morador</th>
+            <th scope="col">Aceite</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for visitante in visitante %}
+            <tr>
+              <td>{{ visitante.nome }}</td>
+              <td>{{ visitante.documento }}</td>
+              <td>{{ visitante.veiculo }}</td>
+              <td>{{ visitante.anfitriao }}</td>
+              <td>
+                {% if visitante.autorizar_convidado == True %}
+                  <spam>Sim</spam>
+                {% else %}
+                  <spam>Não</spam>
+                {% endif %}
+              <td>
+                  <a href="{% url 'guests_editar_convidado' visitante.id %}">
+                    <img src="https://img.icons8.com/ios-glyphs/24/000000/edit--v1.png" alt="Editar">
+                  </a>
+              </td>
+              <td>
+                <a href="{% url 'guests_deletar_convidado' visitante.id %}">
+                  <img src="https://img.icons8.com/ios-glyphs/30/000000/filled-trash.png" alt="Deletar">
+                </a>
+            </td>
+          {% endfor %}
+          </tr>
+        </tbody>
+      </table>
+    </body>
+  </html>
+{% endblock %}

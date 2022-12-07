@@ -16,7 +16,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = True
 
 
-ALLOWED_HOSTS = ['localhost', 'delivery1038.herokuapp.com','127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 INSTALLED_APPS = [
@@ -27,6 +27,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'delivery',
+    'parking',
+    'guests',
+    'main',
     'django_celery_results',
     'django_celery_beat',
 ]
@@ -66,6 +69,7 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+
 DATABASES = { 
     'default': config('DATABASE_URL', default=default_dburl, cast=dburl), 
     }
@@ -112,19 +116,17 @@ DATE_FORMAT = ['%d/%m/%Y']
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
 
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = "/"
+LOGIN_REDIRECT_URL = "{% url , 'delivery_home' %}"
 
 # EMAIL
 
@@ -135,15 +137,17 @@ EMAIL_PORT = 465
 EMAIL_HOST_USER = 'importados@efprodutosdigitais.com.br'
 DEFAULT_FROM_EMAIL= 'importados@efprodutosdigitais.com.br'
 EMAIL_HOST_PASSWORD = 'Pzq@515027'
-# EMAIL_USE_TLS = True
-# EMAIL_USE_SSL = True
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
 
 
 #CELERY
 # CELERY_RESULTS_BACKEND = 'django-db'
 
-# CELERY_BROKER_URL = 'redis://localhost:6379'
-# CELERY_RESULT_BACKEND = 'redis://localhost:6379'
-# CELERY_ACCEPT_CONTENT = ['application/json']
-# CELERY_RESULT_SERIALIZER = 'json'
-# CELERY_TASK_SERIALIZER = 'json'
+BROKER_URL = 'amqp://myuser:mypassword@localhost:5672/myvhost'
+
+CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TASK_SERIALIZER = 'json'

@@ -1,8 +1,6 @@
 from django.forms import ModelForm
 from delivery.models import Delivery
-from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
+from guests.models import evento, convidado
 
 
 class NovaForm(ModelForm):
@@ -20,4 +18,16 @@ class DeliveryForm(ModelForm):
 class MoradorForm(ModelForm):
     class Meta:
         model = Delivery
+        fields = '__all__'
+
+
+class NovoEventoForm(ModelForm):
+    class Meta:
+        model = evento
+        fields = '__all__'
+
+
+class NovoVisitanteForm(ModelForm):
+    class Meta:
+        model = convidado
         fields = '__all__'

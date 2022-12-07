@@ -1,6 +1,7 @@
+from asyncio import tasks
 from django.shortcuts import render, redirect
 from core.form import NovaForm, DeliveryForm
-from .models import Delivery
+from delivery.models import Delivery, Morador
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
 from django.core.mail import send_mail
@@ -8,18 +9,17 @@ from django.core.mail import send_mail
 
 @login_required
 def Morador(request):
-    return render (request, 'morador.html')
-
-
+    return render (request, 'delivery/morador.html')
+    
 @login_required
 def Home(request):
-    return render(request, 'index.html')
+    return render(request, 'delivery/index.html')
 
 
 @login_required
 def Nova(request):
     form = NovaForm()
-    return render(request, 'nova.html', {'form': form})
+    return render(request, 'delivery/nova.html', {'form': form})
 
 
 @login_required
@@ -27,14 +27,21 @@ def Entrega_nova(request):
     form = NovaForm(request.POST or None)
     if form.is_valid():
         form.save()
+    #     send_mail (
+    #     'Você tem uma nova entrega!', 
+    #     'Chegou! Sua encomenda está na portaria te esperando.', 
+    #     'importados@efprodutosdigitais.com.br', 
+    #     ['ricardo.pasqualino@gmail.com'],
+    # ) 
         return redirect('Entregas')
     else:
         return redirect('Erro')
 
+
 @login_required
 def Entregas(request):
     entregas = Delivery.objects.order_by('-data_entrada').all()
-    return render(request, 'entregas.html', {'entregas': entregas})
+    return render(request, 'delivery/entregas.html', {'entregas': entregas})
 
 
 @login_required
@@ -48,19 +55,19 @@ def Atualizar_entrega(request, id):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            return redirect('Entregas')
+        return redirect('Entregas')
     else:
-        return render (request, 'atualizar_entrega.html', data)
+        return render (request, 'delivery/atualizar_entrega.html', data)
 
 
 @login_required
 def Box(request):
-    return render (request, 'box.html')
+    return render (request, 'delivery/box.html')
 
 
 @login_required
 def Casa(request):
-    return render(request, 'casas.html')
+    return render(request, 'delivery/casas.html')
 
 
 def Login_view(request):
@@ -69,11 +76,12 @@ def Login_view(request):
     user = authenticate(request, username=username, password=password)
     if user is not None:
         login(request, user)
-        return redirect('Home')
+        return redirect('main_index')
     else:
-        return redirect('Home')
+        return redirect('erro')
 
 
+@login_required
 def Logout_view(request):
     logout(request)
     return render(request, 'registration/logout.html')
@@ -86,7 +94,7 @@ def Password_reset(request):
 
 @login_required
 def Register(request):
-    return render(request, 'cadastrar-morador.html')
+    return render(request, 'accounts/register.html')
 
 
 @login_required
@@ -94,13 +102,6 @@ def Morador_novo(request):
     form = NovaForm(request.POST or None)
     if form.is_valid():
         form.save()
-        # py.sendwhatmsg (f"+5511966388665","compra entregue 1",9,39)
-        send_mail ('Nova entrega',
-            'Você tem uma nova compra na portaria', 
-            'importados@efprodutosdigitais.com.br', 
-            ['kivam15052@offsala.com'],
-            fail_silently=False
-        )
         return redirect('Entregas')
     else:
         return redirect('Erro')
@@ -111,8 +112,10 @@ def Erro(request):
     return render(request, 'erro.html')
 
 
-@login_required
 def Painel(request):
     # x  = Delivery.objects.all()
     # qtd_entregas = x.count()
-    return render(request, 'painel.html')
+    return render(request, 'delivery/painel.html')
+
+
+
